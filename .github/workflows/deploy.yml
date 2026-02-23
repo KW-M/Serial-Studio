@@ -115,36 +115,16 @@ jobs:
           libxkbcommon-x11-0 \
           libxkbcommon-x11-dev
 
-    - name: '⚙️ Restore Qt Cache'
-      uses: actions/cache/restore@v3
-      if: env.INSTALL_QT_LINUX_INTEL == 'false'
+    - name: '⚙️ * Install Qt'
+      uses: jurplel/install-qt-action@v4
       with:
-        path: |
-          ${{github.workspace}}/Qt-${{env.QT_VERSION_LINUX}}-${{runner.os}}-x64
-          ${{env.USERPROFILE}}/.qt-license
-        key: qt-${{runner.os}}-${{env.QT_VERSION_LINUX}}-x64
-
-    - name: '⚙️ Install Qt'
-      shell: bash
-      if: env.INSTALL_QT_LINUX_INTEL == 'true'
-      env:
-        QT_VERSION: ${{env.QT_VERSION_LINUX}}
-        QT_ARCH: x64
-        QT_USERNAME: ${{secrets.QT_USERNAME}}
-        QT_PASSWORD: ${{secrets.QT_PASSWORD}}
-        QT_OUTPUT_DIR: ${{github.workspace}}/Qt-${{env.QT_VERSION_LINUX}}-${{runner.os}}-x64
-      run: |
-        chmod +x ./scripts/install-qt.sh
-        ./scripts/install-qt.sh
-
-    - name: '⚙️ Save Qt Cache'
-      if: env.INSTALL_QT_LINUX_INTEL == 'true'
-      uses: actions/cache/save@v3
-      with:
-        path: |
-          ${{github.workspace}}/Qt-${{env.QT_VERSION_LINUX}}-${{runner.os}}-x64
-          ${{env.USERPROFILE}}/.qt-license
-        key: qt-${{runner.os}}-${{env.QT_VERSION_LINUX}}-x64
+        version: ${{env.QT_VERSION_LINUX}}
+        target: 'desktop'
+        arch: 'x64'
+        use-official: true
+        email: ${{ secrets.QT_USERNAME }}
+        pw: ${{ secrets.QT_PASSWORD }}
+        dir: ${{github.workspace}}/Qt-${{env.QT_VERSION_LINUX}}-${{runner.os}}-x64
 
     - name: '⚙️ Add Qt to PATH'
       shell: bash
@@ -272,35 +252,17 @@ jobs:
           libxkbcommon-dev \
           libxkbcommon-x11-0 \
           libxkbcommon-x11-dev
-
-    - name: '⚙️ Restore Qt Cache'
-      uses: actions/cache/restore@v3
-      if: env.INSTALL_QT_LINUX_ARM64 == 'false'
+          
+    - name: '⚙️ * Install Qt'
+      uses: jurplel/install-qt-action@v4
       with:
-        path: |
-          ${{github.workspace}}/Qt-${{env.QT_VERSION_LINUX}}-${{runner.os}}-arm64
-        key: qt-${{runner.os}}-${{env.QT_VERSION_LINUX}}-arm64
-
-    - name: '⚙️ Install Qt'
-      shell: bash
-      if: env.INSTALL_QT_LINUX_ARM64 == 'true'
-      env:
-        QT_VERSION: ${{env.QT_VERSION_LINUX}}
-        QT_ARCH: arm64
-        QT_USERNAME: ${{secrets.QT_USERNAME}}
-        QT_PASSWORD: ${{secrets.QT_PASSWORD}}
-        QT_OUTPUT_DIR: ${{github.workspace}}/Qt-${{env.QT_VERSION_LINUX}}-${{runner.os}}-arm64
-      run: |
-        chmod +x ./scripts/install-qt.sh
-        ./scripts/install-qt.sh
-
-    - name: '⚙️ Save Qt Cache'
-      uses: actions/cache/save@v3
-      if: env.INSTALL_QT_LINUX_ARM64 == 'true'
-      with:
-        path: |
-          ${{github.workspace}}/Qt-${{env.QT_VERSION_LINUX}}-${{runner.os}}-arm64
-        key: qt-${{runner.os}}-${{env.QT_VERSION_LINUX}}-arm64
+        version: ${{env.QT_VERSION_LINUX}}
+        target: 'desktop'
+        arch: 'arm64'
+        use-official: true
+        email: ${{ secrets.QT_USERNAME }}
+        pw: ${{ secrets.QT_PASSWORD }}
+        dir: ${{github.workspace}}/Qt-${{env.QT_VERSION_LINUX}}-${{runner.os}}-x64
 
     - name: '⚙️ Add Qt to PATH'
       shell: bash
@@ -391,38 +353,18 @@ jobs:
     - name: '⚙️ Install dependencies'
       run: |
         brew install expat
-
-    - name: '⚙️ Restore Qt Cache'
-      uses: actions/cache/restore@v3
-      if: env.INSTALL_QT_MACOS == 'false'
+        
+    - name: '⚙️ * Install Qt'
+      uses: jurplel/install-qt-action@v4
       with:
-        path: |
-          ${{github.workspace}}/Qt-${{env.QT_VERSION_MACOS}}-${{runner.os}}-x64
-          ${{env.USERPROFILE}}/.qt-license
-        key: qt-${{runner.os}}-${{env.QT_VERSION_MACOS}}-x64
-
-    - name: '⚙️ Install Qt'
-      shell: bash
-      if: env.INSTALL_QT_MACOS == 'true'
-      env:
-        QT_VERSION: ${{env.QT_VERSION_MACOS}}
-        QT_ARCH: x64
-        QT_USERNAME: ${{secrets.QT_USERNAME}}
-        QT_PASSWORD: ${{secrets.QT_PASSWORD}}
-        QT_OUTPUT_DIR: ${{github.workspace}}/Qt-${{env.QT_VERSION_MACOS}}-${{runner.os}}-x64
-      run: |
-        chmod +x ./scripts/install-qt.sh
-        ./scripts/install-qt.sh
-
-    - name: '⚙️ Save Qt Cache'
-      if: env.INSTALL_QT_MACOS == 'true'
-      uses: actions/cache/save@v3
-      with:
-        path: |
-          ${{github.workspace}}/Qt-${{env.QT_VERSION_MACOS}}-${{runner.os}}-x64
-          ${{env.USERPROFILE}}/.qt-license
-        key: qt-${{runner.os}}-${{env.QT_VERSION_MACOS}}-x64
-
+        version: ${{env.QT_VERSION_MACOS}}
+        target: 'desktop'
+        arch: 'x64'
+        use-official: true
+        email: ${{ secrets.QT_USERNAME }}
+        pw: ${{ secrets.QT_PASSWORD }}
+        dir: ${{github.workspace}}/Qt-${{env.QT_VERSION_MACOS}}-${{runner.os}}-x64
+        
     - name: '⚙️ Add Qt to PATH'
       shell: bash
       env:
@@ -542,36 +484,17 @@ jobs:
       uses: actions/checkout@v4
       with:
         submodules: 'recursive'
-
-    - name: '⚙️ Restore Qt Cache'
-      uses: actions/cache/restore@v3
-      if: env.INSTALL_QT_WINDOWS == 'false'
+        
+    - name: '⚙️ * Install Qt'
+      uses: jurplel/install-qt-action@v4
       with:
-        path: |
-          ${{github.workspace}}/Qt-${{env.QT_VERSION_WINDOWS}}-${{runner.os}}-x64
-          ${{env.USERPROFILE}}/.qt-license
-        key: qt-${{runner.os}}-${{env.QT_VERSION_WINDOWS}}-x64-msvc2022_64
-
-    - name: '⚙️ Install Qt'
-      shell: pwsh
-      if: env.INSTALL_QT_WINDOWS == 'true'
-      env:
-        QT_VERSION: ${{env.QT_VERSION_WINDOWS}}
-        QT_ARCH: x64
-        QT_USERNAME: ${{secrets.QT_USERNAME}}
-        QT_PASSWORD: ${{secrets.QT_PASSWORD}}
-        QT_OUTPUT_DIR: ${{github.workspace}}/Qt-${{env.QT_VERSION_WINDOWS}}-${{runner.os}}-x64
-      run: |
-        ./scripts/install-qt.ps1
-
-    - name: '⚙️ Save Qt Cache'
-      if: env.INSTALL_QT_WINDOWS == 'true'
-      uses: actions/cache/save@v3
-      with:
-        path: |
-          ${{github.workspace}}/Qt-${{env.QT_VERSION_WINDOWS}}-${{runner.os}}-x64
-          ${{env.USERPROFILE}}/.qt-license
-        key: qt-${{runner.os}}-${{env.QT_VERSION_WINDOWS}}-x64-msvc2022_64
+        version: ${{env.QT_VERSION_WINDOWS}}
+        target: 'desktop'
+        arch: 'x64'
+        use-official: true
+        email: ${{ secrets.QT_USERNAME }}
+        pw: ${{ secrets.QT_PASSWORD }}
+        dir: ${{github.workspace}}/Qt-${{env.QT_VERSION_WINDOWS}}-${{runner.os}}-x64
 
     - name: '⚙️ Add Qt to PATH'
       shell: pwsh
