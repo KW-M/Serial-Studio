@@ -39,18 +39,18 @@ on:
 #-------------------------------------------------------------------------------
 
 env:
-  VERSION: "3.2.4"
+  VERSION: "3.2.3"
   QT_VERSION_LINUX: 6.9.3
   QT_VERSION_MACOS: 6.9.3
   QT_VERSION_WINDOWS: 6.9.3
-  EXECUTABLE: "Serial-Studio-Pro"
-  APPLICATION: "Serial Studio Pro"
-  UNIXNAME: "serial-studio-pro"
+  EXECUTABLE: "Serial-Studio"
+  APPLICATION: "Serial Studio"
+  UNIXNAME: "serial-studio"
   QML_DIR: "../../app/qml"
   PUBLISHER: "Alex Spataru"
-  INSTALL_QT_MACOS: false
-  INSTALL_QT_WINDOWS: false
-  INSTALL_QT_LINUX_INTEL: false
+  INSTALL_QT_MACOS: true
+  INSTALL_QT_WINDOWS: true
+  INSTALL_QT_LINUX_INTEL: true
   INSTALL_QT_LINUX_ARM64: false
   QTFRAMEWORK_BYPASS_LICENSE_CHECK: "true"
   DESCRIPTION: "Multi-purpose serial data visualization & processing program"
@@ -177,8 +177,8 @@ jobs:
           -DPRODUCTION_OPTIMIZATION=ON \
           -DENABLE_HARDENING=ON \
           -DCMAKE_BUILD_TYPE=Release \
-          -DBUILD_COMMERCIAL=ON \
-          -DBUILD_GPL3=OFF
+          -DBUILD_COMMERCIAL=OFF \
+          -DBUILD_GPL3=ON
 
     - name: '🚧 Build application'
       run: |
@@ -333,8 +333,8 @@ jobs:
           -DPRODUCTION_OPTIMIZATION=ON \
           -DENABLE_HARDENING=ON \
           -DCMAKE_BUILD_TYPE=Release \
-          -DBUILD_COMMERCIAL=ON \
-          -DBUILD_GPL3=OFF
+          -DBUILD_COMMERCIAL=OFF \
+          -DBUILD_GPL3=ON
 
     - name: '🚧 Build application'
       run: |
@@ -461,8 +461,8 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
           -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
-          -DBUILD_COMMERCIAL=ON \
-          -DBUILD_GPL3=OFF
+          -DBUILD_COMMERCIAL=OFF \
+          -DBUILD_GPL3=ON
 
     - name: '🚧 Build application'
       run: |
@@ -613,8 +613,8 @@ jobs:
           -DPRODUCTION_OPTIMIZATION=ON `
           -DENABLE_HARDENING=ON `
           -DCMAKE_BUILD_TYPE=Release `
-          -DBUILD_COMMERCIAL=ON `
-          -DBUILD_GPL3=OFF
+          -DBUILD_COMMERCIAL=OFF `
+          -DBUILD_GPL3=ON
 
     - name: '🚧 Build application'
       run: |
