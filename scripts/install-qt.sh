@@ -104,10 +104,11 @@ if [ "$OS_NAME" = "Darwin" ]; then
 
   QT_INSTALLER_NON_INTERACTIVE=1
   echo "Installing Qt via CLI: $ALIAS_PACKAGE"
-  "yes" | "$QT_EXEC" \
+  echo "yes" | "$QT_EXEC" \
     --root "$QT_OUTPUT_DIR" \
     --email "$QT_USERNAME" \
     --pw "$QT_PASSWORD" \
+    --platform minimal \
     --accept-licenses \
     --default-answer \
     --confirm-command \
@@ -130,10 +131,12 @@ fi
 
 QT_INSTALLER_NON_INTERACTIVE=1
 echo "Installing Qt via CLI: $ALIAS_PACKAGE"
-"yes" | "$INSTALLER_PATH" \
+
+echo "yes" | "$INSTALLER_PATH" \
   --root "$QT_OUTPUT_DIR" \
   --email "$QT_USERNAME" \
   --pw "$QT_PASSWORD" \
+  --platform minimal \
   --accept-licenses \
   --default-answer \
   --confirm-command \
