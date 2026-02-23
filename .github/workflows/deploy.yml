@@ -120,7 +120,8 @@ jobs:
       with:
         version: ${{env.QT_VERSION_LINUX}}
         target: 'desktop'
-        arch: 'x64'
+        arch: 'linux_gcc_64'
+        modules: 'qt3d.debug_information qt3d qt5compat.debug_information qt5compat qtcharts.debug_information qtcharts qtconnectivity.debug_information qtconnectivity qtdatavis3d.debug_information qtdatavis3d qtgraphs.debug_information qtgraphs qtgrpc.debug_information qtgrpc qthttpserver.debug_information qthttpserver qtimageformats.debug_information qtimageformats qtlanguageserver qtlocation.debug_information qtlocation qtlottie.debug_information qtlottie qtmultimedia.debug_information qtmultimedia qtnetworkauth.debug_information qtnetworkauth qtpositioning.debug_information qtpositioning qtquick3d.debug_information qtquick3d qtquick3dphysics.debug_information qtquick3dphysics qtquickeffectmaker.debug_information qtquickeffectmaker qtquicktimeline.debug_information qtquicktimeline qtremoteobjects.debug_information qtremoteobjects qtscxml.debug_information qtscxml qtsensors.debug_information qtsensors qtserialbus.debug_information qtserialbus qtserialport.debug_information qtserialport qtshadertools.debug_information qtshadertools qtspeech.debug_information qtspeech qtvirtualkeyboard.debug_information qtvirtualkeyboard qtwaylandcompositor qtwebchannel.debug_information qtwebchannel qtwebsockets.debug_information qtwebsockets qtwebview.debug_information qtwebview debug_info'
         use-official: true
         email: ${{ secrets.QT_USERNAME }}
         pw: ${{ secrets.QT_PASSWORD }}
@@ -258,11 +259,12 @@ jobs:
       with:
         version: ${{env.QT_VERSION_LINUX}}
         target: 'desktop'
-        arch: 'arm64'
         use-official: true
         email: ${{ secrets.QT_USERNAME }}
         pw: ${{ secrets.QT_PASSWORD }}
         dir: ${{github.workspace}}/Qt-${{env.QT_VERSION_LINUX}}-${{runner.os}}-x64
+        arch: 'linux_gcc_arm64'
+        modules: 'qt3d.debug_information qt3d qt5compat.debug_information qt5compat qtcharts.debug_information qtcharts qtconnectivity.debug_information qtconnectivity qtdatavis3d.debug_information qtdatavis3d qtgraphs.debug_information qtgraphs qtgrpc.debug_information qtgrpc qthttpserver.debug_information qthttpserver qtimageformats.debug_information qtimageformats qtlanguageserver qtlocation.debug_information qtlocation qtlottie.debug_information qtlottie qtmultimedia.debug_information qtmultimedia qtnetworkauth.debug_information qtnetworkauth qtpositioning.debug_information qtpositioning qtquick3d.debug_information qtquick3d qtquick3dphysics.debug_information qtquick3dphysics qtquickeffectmaker.debug_information qtquickeffectmaker qtquicktimeline.debug_information qtquicktimeline qtremoteobjects.debug_information qtremoteobjects qtscxml.debug_information qtscxml qtsensors.debug_information qtsensors qtserialbus.debug_information qtserialbus qtserialport.debug_information qtserialport qtshadertools.debug_information qtshadertools qtspeech.debug_information qtspeech qtvirtualkeyboard.debug_information qtvirtualkeyboard qtwaylandcompositor qtwebchannel.debug_information qtwebchannel qtwebsockets.debug_information qtwebsockets qtwebview.debug_information qtwebview debug_info'
 
     - name: '⚙️ Add Qt to PATH'
       shell: bash
@@ -359,12 +361,13 @@ jobs:
       with:
         version: ${{env.QT_VERSION_MACOS}}
         target: 'desktop'
-        arch: 'x64'
         use-official: true
         email: ${{ secrets.QT_USERNAME }}
         pw: ${{ secrets.QT_PASSWORD }}
         dir: ${{github.workspace}}/Qt-${{env.QT_VERSION_MACOS}}-${{runner.os}}-x64
-        
+        arch: 'clang_64'
+        modules: 'qt3d.debug_information qt3d qt5compat.debug_information qt5compat qtcharts.debug_information qtcharts qtconnectivity.debug_information qtconnectivity qtdatavis3d.debug_information qtdatavis3d qtgraphs.debug_information qtgraphs qtgrpc.debug_information qtgrpc qthttpserver.debug_information qthttpserver qtimageformats.debug_information qtimageformats qtlanguageserver qtlocation.debug_information qtlocation qtlottie.debug_information qtlottie qtmultimedia.debug_information qtmultimedia qtnetworkauth.debug_information qtnetworkauth qtpositioning.debug_information qtpositioning qtquick3d.debug_information qtquick3d qtquick3dphysics.debug_information qtquick3dphysics qtquickeffectmaker.debug_information qtquickeffectmaker qtquicktimeline.debug_information qtquicktimeline qtremoteobjects.debug_information qtremoteobjects qtscxml.debug_information qtscxml qtsensors.debug_information qtsensors qtserialbus.debug_information qtserialbus qtserialport.debug_information qtserialport qtshadertools.debug_information qtshadertools qtspeech.debug_information qtspeech qtvirtualkeyboard.debug_information qtvirtualkeyboard qtwaylandcompositor qtwebchannel.debug_information qtwebchannel qtwebsockets.debug_information qtwebsockets qtwebview.debug_information qtwebview debug_info'
+
     - name: '⚙️ Add Qt to PATH'
       shell: bash
       env:
@@ -485,13 +488,19 @@ jobs:
       with:
         submodules: 'recursive'
         
+    - name: '🛠 Setup MSVC Development Environment'
+      uses: TheMrMilchmann/setup-msvc-dev@v3
+      with:
+        arch: x64
+        
     - name: '⚙️ * Install Qt'
       uses: jurplel/install-qt-action@v4
       with:
         version: ${{env.QT_VERSION_WINDOWS}}
         target: 'desktop'
-        arch: 'x64'
         use-official: true
+        arch: 'win64_msvc2022_64'
+        modules: 'qt3d.debug_information qt3d qt5compat.debug_information qt5compat qtactiveqt.debug_information qtactiveqt qtcharts.debug_information qtcharts qtconnectivity.debug_information qtconnectivity qtdatavis3d.debug_information qtdatavis3d qtgraphs.debug_information qtgraphs qtgrpc.debug_information qtgrpc qthttpserver.debug_information qthttpserver qtimageformats.debug_information qtimageformats qtlanguageserver qtlocation.debug_information qtlocation qtlottie.debug_information qtlottie qtmultimedia.debug_information qtmultimedia qtnetworkauth.debug_information qtnetworkauth qtpositioning.debug_information qtpositioning qtquick3d.debug_information qtquick3d qtquick3dphysics.debug_information qtquick3dphysics qtquickeffectmaker.debug_information qtquickeffectmaker qtquicktimeline.debug_information qtquicktimeline qtremoteobjects.debug_information qtremoteobjects qtscxml.debug_information qtscxml qtsensors.debug_information qtsensors qtserialbus.debug_information qtserialbus qtserialport.debug_information qtserialport qtshadertools.debug_information qtshadertools qtspeech.debug_information qtspeech qtvirtualkeyboard.debug_information qtvirtualkeyboard qtwebchannel.debug_information qtwebchannel qtwebsockets.debug_information qtwebsockets qtwebview.debug_information qtwebview debug_info'
         email: ${{ secrets.QT_USERNAME }}
         pw: ${{ secrets.QT_PASSWORD }}
         dir: ${{github.workspace}}/Qt-${{env.QT_VERSION_WINDOWS}}-${{runner.os}}-x64
@@ -514,11 +523,6 @@ jobs:
       uses: lukka/get-cmake@latest
       with:
         useLocalCache: true
-
-    - name: '🛠 Setup MSVC Development Environment'
-      uses: TheMrMilchmann/setup-msvc-dev@v3
-      with:
-        arch: x64
 
     - name: '🚧 Configure with CMake'
       env:
