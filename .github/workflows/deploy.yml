@@ -43,9 +43,9 @@ env:
   QT_VERSION_LINUX: 6.9.3
   QT_VERSION_MACOS: 6.9.3
   QT_VERSION_WINDOWS: 6.9.3
-  EXECUTABLE: "Serial-Studio"
+  EXECUTABLE: "Serial-Studio-pro"
   APPLICATION: "Serial Studio"
-  UNIXNAME: "serial-studio"
+  UNIXNAME: "serial-studio-pro"
   QML_DIR: "../../app/qml"
   PUBLISHER: "Alex Spataru"
   INSTALL_QT_MACOS: true
@@ -344,7 +344,7 @@ jobs:
 #-------------------------------------------------------------------------------
 
   build-macos:
-    runs-on: macos-latest
+    runs-on: macos-15-intel
     name: '🍎 macOS'
     steps:
     - name: '🧰 Checkout'
