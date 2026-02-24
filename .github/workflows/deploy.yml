@@ -43,7 +43,7 @@ env:
   QT_VERSION_LINUX: 6.9.3
   QT_VERSION_MACOS: 6.9.3
   QT_VERSION_WINDOWS: 6.9.3
-  EXECUTABLE: "Serial-Studio-pro"
+  EXECUTABLE: "Serial-Studio-Pro"
   APPLICATION: "Serial Studio"
   UNIXNAME: "serial-studio-pro"
   QML_DIR: "../../app/qml"
